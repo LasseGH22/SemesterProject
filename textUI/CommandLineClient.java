@@ -33,14 +33,33 @@ public class CommandLineClient {
         }
         System.out.println("Thank you for playing.  Good bye.");
     }
+    public void pressEnterToContinue() {
+        try {
+            System.in.read();
+        } catch(Exception e) { }
+    }
 
     private void printWelcome() {
-        System.out.println();
-        System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
-        System.out.println("Type '" + Commands.HELP + "' if you need help.");
-        System.out.println();
-        System.out.println(game.getRoomDescription());
+            System.out.println();
+            System.out.println("Velkommen til Skipper Skrald!");
+            System.out.println("Verdenshavenes sundhed og velvær er essentielt for at jorden er beboelig for mennesker og dyr.");
+            System.out.println("Dog er vi mennesker ved at ødelægge det for os selv, grundet vores generelt dårlige håndtering af plastik.");
+            System.out.println("Ifølge forskerne ender der årligt mere end 8 tons plastik i verdenshavene og det formodes at i 2050 vil der være mere plastik i havene end mængden af dyr");
+            System.out.println("> Tryk enter");
+            System.out.println();
+            pressEnterToContinue();
+            System.out.println("Du, Skipper Skrald skal hjælpe med at rede verdenshavene");
+            System.out.println("Du skal sejle ud med dit skib, indsamle plast og herefter sejle tilbage til havnen og sende plasten til genbrug.");
+            pressEnterToContinue();
+            System.out.println("Held og lykke");
+            System.out.println();
+            try{ Thread.sleep(1000);}
+            catch(Exception e) {System.out.println(e);}
+            System.out.println("Skriv '" + Commands.HELP + "' hvis du har brug for hjælp");
+            System.out.println();
+            try{ Thread.sleep(1000);}
+            catch(Exception e) {System.out.println(e);}
+            System.out.println(game.getRoomDescription());
     }
 
     private void printHelp() {
