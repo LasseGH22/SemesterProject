@@ -13,28 +13,74 @@ public class Game {
     }
 
     private void createRooms() {
-        Room outside, theatre, pub, lab, office;
+        Room A1, A2, A3, A4, A5;
+        Room B1, B2, B3, B4, B5;
+        Room C1, C2, C3, C4, C5;
+        Room D1, D2, D3, D4, D5;
+        Room E1, E2, E3, E4, E5;
+        Room Harbour;
 
-        outside = new Room("outside the main entrance of the university");
-        theatre = new Room("in a lecture theatre");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
+        A1 = new Room("You are on the ocean");
+        A2 = new Room("You are on the ocean");
+        A3 = new Room("You are on the ocean");
+        A4 = new Room("You are on the ocean");
+        A5 = new Room("You are on the ocean");
+        B1 = new Room("You are on the ocean");
+        B3 = new Room("You are on the ocean");
+        B4 = new Room("You are on the ocean");
+        B5 = new Room("You are on the ocean");
+        C1 = new Room("You are on the ocean");
+        C3 = new Room("You are on the ocean");
+        D1 = new Room("You are on the ocean");
+        D3 = new Room("You are on the ocean");
+        D4 = new Room("You are on the ocean");
+        D5 = new Room("You are on the ocean");
+        E1 = new Room("You are on the ocean");
+        E3 = new Room("You are on the ocean");
+        E4 = new Room("You are on the ocean");
+        E5 = new Room("You are on the ocean");
 
-        outside.setExit("east", theatre);
-        outside.setExit("south", lab);
-        outside.setExit("west", pub);
+        B2 = new Room("You are stranded on an island");
+        C2 = new Room("You are stranded on an island");
+        C4 = new Room("You are stranded on an island");
+        C5 = new Room("You are stranded on an island");
+        D2 = new Room("You are stranded on an island");
+        E2 = new Room("You are stranded on an island");
 
-        theatre.setExit("west", outside);
+        Harbour = new Room("You are in the harbour");
 
-        pub.setExit("east", outside);
+        Room[] allOcean = {A1,A2,A3,A4,A5,B1,B3,B4,B5,C1,C3,D1,D3,D4,D5,E1,E3,E4,E5};
+        Room[] allIslands = {B2,C2,C4,C5,D2,E2};
 
-        lab.setExit("north", outside);
-        lab.setExit("east", office);
+        Harbour.setExit("north",E3);
 
-        office.setExit("west", lab);
+        A1.setExit("south",B1);
+        A1.setExit("east",A2);
 
-        currentRoom = outside;
+        A2.setExit("west",A1);
+        A2.setExit("east",A3);
+
+        A3.setExit("west",A2);
+        A3.setExit("south",B3);
+        A3.setExit("east",A4);
+
+        A4.setExit("west",A3);
+        A4.setExit("south",B4);
+        A4.setExit("east",A5);
+
+        A5.setExit("west",A4);
+        A5.setExit("south",B5);
+
+        B1.setExit("north",A1);
+        B1.setExit("south",C1);
+
+        B3.setExit("north",A3);
+        B3.setExit("east",B4);
+        B3.setExit("south",C3);
+
+
+
+        currentRoom = Harbour;
     }
 
     public boolean goRoom(Command command) {
