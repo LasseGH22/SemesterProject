@@ -16,6 +16,16 @@ public class Room
         exits = new HashMap<String, Room>();
     }
 
+    public double spawnPlastic(){
+        Plastic plastic = new Plastic();
+        double amount = plastic.getAmount();
+        if(plastic.spawnChance()){
+            plastic.spawn();
+        }
+        else amount = 0.0;
+        return amount;
+    }
+
     public void setExit(String direction, Room neighbor) 
     {
         exits.put(direction, neighbor);
