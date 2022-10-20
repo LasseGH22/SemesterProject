@@ -20,64 +20,103 @@ public class Game {
         Room E1, E2, E3, E4, E5;
         Room Harbour;
 
-        A1 = new Room("You are on the ocean");
-        A2 = new Room("You are on the ocean");
-        A3 = new Room("You are on the ocean");
-        A4 = new Room("You are on the ocean");
-        A5 = new Room("You are on the ocean");
-        B1 = new Room("You are on the ocean");
-        B3 = new Room("You are on the ocean");
-        B4 = new Room("You are on the ocean");
-        B5 = new Room("You are on the ocean");
-        C1 = new Room("You are on the ocean");
-        C3 = new Room("You are on the ocean");
-        D1 = new Room("You are on the ocean");
-        D3 = new Room("You are on the ocean");
-        D4 = new Room("You are on the ocean");
-        D5 = new Room("You are on the ocean");
-        E1 = new Room("You are on the ocean");
-        E3 = new Room("You are on the ocean");
-        E4 = new Room("You are on the ocean");
-        E5 = new Room("You are on the ocean");
+        A1 = new Room("ude på havet");
+        A2 = new Room("ude på havet");
+        A3 = new Room("ude på havet");
+        A4 = new Room("ude på havet");
+        A5 = new Room("ude på havet");
+        B1 = new Room("ude på havet");
+        B3 = new Room("ude på havet");
+        B4 = new Room("ude på havet");
+        B5 = new Room("ude på havet");
+        C1 = new Room("ude på havet");
+        C3 = new Room("ude på havet");
+        D1 = new Room("ude på havet");
+        D3 = new Room("ude på havet");
+        D4 = new Room("ude på havet");
+        D5 = new Room("ude på havet");
+        E1 = new Room("ude på havet");
+        E3 = new Room("ude på havet");
+        E4 = new Room("ude på havet");
+        E5 = new Room("ude på havet");
 
-        B2 = new Room("You are stranded on an island");
-        C2 = new Room("You are stranded on an island");
-        C4 = new Room("You are stranded on an island");
-        C5 = new Room("You are stranded on an island");
-        D2 = new Room("You are stranded on an island");
-        E2 = new Room("You are stranded on an island");
+        B2 = new Room("strandet på en ø");
+        C2 = new Room("strandet på en ø");
+        C4 = new Room("strandet på en ø");
+        C5 = new Room("strandet på en ø");
+        D2 = new Room("strandet på en ø");
+        E2 = new Room("strandet på en ø");
 
-        Harbour = new Room("You are in the harbour");
+        Harbour = new Room("nu i havnen");
 
         Room[] allOcean = {A1,A2,A3,A4,A5,B1,B3,B4,B5,C1,C3,D1,D3,D4,D5,E1,E3,E4,E5};
         Room[] allIslands = {B2,C2,C4,C5,D2,E2};
 
-        Harbour.setExit("north",E3);
+        Harbour.setExit("nord",E3);
 
-        A1.setExit("south",B1);
-        A1.setExit("east",A2);
+        A1.setExit("syd",B1);
+        A1.setExit("øst",A2);
 
-        A2.setExit("west",A1);
-        A2.setExit("east",A3);
+        A2.setExit("vest",A1);
+        A2.setExit("øst",A3);
 
-        A3.setExit("west",A2);
-        A3.setExit("south",B3);
-        A3.setExit("east",A4);
+        A3.setExit("vest",A2);
+        A3.setExit("syd",B3);
+        A3.setExit("øst",A4);
 
-        A4.setExit("west",A3);
-        A4.setExit("south",B4);
-        A4.setExit("east",A5);
+        A4.setExit("vest",A3);
+        A4.setExit("syd",B4);
+        A4.setExit("øst",A5);
 
-        A5.setExit("west",A4);
-        A5.setExit("south",B5);
+        A5.setExit("vest",A4);
+        A5.setExit("syd",B5);
 
-        B1.setExit("north",A1);
-        B1.setExit("south",C1);
+        B1.setExit("nord",A1);
+        B1.setExit("syd",C1);
 
-        B3.setExit("north",A3);
-        B3.setExit("east",B4);
-        B3.setExit("south",C3);
+        B3.setExit("nord",A3);
+        B3.setExit("øst",B4);
+        B3.setExit("syd",C3);
 
+        B4.setExit("nord",A4);
+        B4.setExit("vest",B3);
+        B4.setExit("øst",B5);
+
+        B5.setExit("nord",A5);
+        B5.setExit("øst",B4);
+
+        C1.setExit("nord",B1);
+        C1.setExit("syd",D1);
+
+        C3.setExit("nord",B3);
+        C3.setExit("syd",D3);
+
+        D1.setExit("nord",C1);
+        D1.setExit("syd",E1);
+
+        D3.setExit("nord",C3);
+        D3.setExit("øst",D4);
+        D3.setExit("syd",E3);
+
+        D4.setExit("vest",D3);
+        D4.setExit("syd",E4);
+        D4.setExit("øst",D5);
+
+        D5.setExit("vest",D4);
+        D5.setExit("syd",E5);
+
+        E1.setExit("nord",D1);
+
+        E3.setExit("nord",D3);
+        E3.setExit("syd",Harbour);
+        E3.setExit("øst",E4);
+
+        E4.setExit("vest",E3);
+        E4.setExit("nord",D4);
+        E4.setExit("øst",E5);
+
+        E5.setExit("nord",D5);
+        E5.setExit("vest",E4);
 
 
         currentRoom = Harbour;
