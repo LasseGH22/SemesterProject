@@ -5,9 +5,9 @@ public class Plastic implements Spawnable{
 
     private double amount;
 
-    public Plastic() {
-        this.amount = 100;
-    }
+//    public Plastic() {
+//        this.amount = 100;
+//    }
 
     public void setAmount(double amount) {
         this.amount = amount;
@@ -20,8 +20,7 @@ public class Plastic implements Spawnable{
     @Override
     public boolean spawnChance(){
         Random random = new Random();
-        int chance = random.nextInt(100);
-        chance = chance +1;
+        int chance = random.nextInt(101);
         if(chance<65){
             return true;
         }

@@ -18,12 +18,15 @@ public class Room
 
     public double spawnPlastic(){
         Plastic plastic = new Plastic();
-        double amount = plastic.getAmount();
-        if(plastic.spawnChance()){
+        double amount = 0.0;
+        if(plastic.spawnChance() == true){
             plastic.spawn();
+            amount = plastic.getAmount();
         }
-        else amount = 0.0;
-        return amount;
+        else if (plastic.spawnChance() == false){
+            amount = 0.0;
+        }
+        return ((int)amount);
     }
 
     public void setExit(String direction, Room neighbor) 
@@ -38,7 +41,7 @@ public class Room
 
     public String getLongDescription()
     {
-        return "Du er " + description + ".\n" + getExitString();
+        return "Du er " + description + ". Der er "+ spawnPlastic() + " antal tons plast." + "\n" + getExitString();
     }
 
     private String getExitString()
