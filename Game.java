@@ -11,14 +11,16 @@ public class Game {
         createRooms();
         commands = new CommandWordsImplementation();
     }
-
+    //Creates the ship
+    //Should be moved to constructor
+    private Ship skipperSkrald = new Ship();
     private void createRooms() {
         Room A1, A2, A3, A4, A5;
         Room B1, B2, B3, B4, B5;
         Room C1, C2, C3, C4, C5;
         Room D1, D2, D3, D4, D5;
         Room E1, E2, E3, E4, E5;
-        Room Harbour;
+        Room Harbor;
 
         A1 = new Room("ude på havet");
         A2 = new Room("ude på havet");
@@ -47,12 +49,13 @@ public class Game {
         D2 = new Room("strandet på en ø");
         E2 = new Room("strandet på en ø");
 
-        Harbour = new Room("nu i havnen");
+        //Changed Object type from Room to Harbor
+        Harbor = new Harbor("nu i havnen");
 
         Room[] allOcean = {A1,A2,A3,A4,A5,B1,B3,B4,B5,C1,C3,D1,D3,D4,D5,E1,E3,E4,E5};
         Room[] allIslands = {B2,C2,C4,C5,D2,E2};
 
-        Harbour.setExit("nord",E3);
+        Harbor.setExit("nord",E3);
 
         A1.setExit("syd",B1);
         A1.setExit("øst",A2);
@@ -108,7 +111,7 @@ public class Game {
         E1.setExit("nord",D1);
 
         E3.setExit("nord",D3);
-        E3.setExit("syd",Harbour);
+        E3.setExit("syd",Harbor);
         E3.setExit("øst",E4);
 
         E4.setExit("vest",E3);
@@ -119,7 +122,7 @@ public class Game {
         E5.setExit("vest",E4);
 
 
-        currentRoom = Harbour;
+        currentRoom = Harbor;
     }
 
     public boolean goRoom(Command command) {
@@ -149,7 +152,15 @@ public class Game {
             return true;
         }
     }
-
+    public boolean dispose(Command command) {
+        if (currentRoom.isHarbor()) {
+            int score = skipperSkrald.disposePlastic();
+            ((Harbor)currentRoom).setScore(score);
+            return true;
+        }
+        return false;
+    }
+    //TILFØJ METODE "COLLECT"
     public String getRoomDescription() {
         return currentRoom.getLongDescription();
     }
