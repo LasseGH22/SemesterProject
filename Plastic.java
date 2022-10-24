@@ -5,10 +5,6 @@ public class Plastic implements Spawnable{
 
     private double amount;
 
-//    public Plastic() {
-//        this.amount = 100;
-//    }
-
     public void setAmount(double amount) {
         this.amount = amount;
     }

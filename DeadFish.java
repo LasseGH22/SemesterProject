@@ -3,10 +3,7 @@ import java.util.Random;
 
 public class DeadFish implements Spawnable {
     private String deathReason;
-
-    public DeadFish(String deathReason) {
-        this.deathReason = deathReason;
-    }
+    int count;
 
     public String getDeathReason() {
         return deathReason;
@@ -18,9 +15,9 @@ public class DeadFish implements Spawnable {
     @Override
     public boolean spawnChance(){
         Random random = new Random();
-        int chance = random.nextInt(100);
+        int chance = random.nextInt(101);
         chance = chance +1;
-        if(chance<26){
+        if(chance<102){
             return true;
         }
         else return false;
@@ -28,12 +25,14 @@ public class DeadFish implements Spawnable {
 
     @Override
     public void spawn() {
-        String reason1 = "Fisken er viklet ind i en fiskesnor og er druknet";
-        String reason2 = "Fisken har fået plastik i spiserøret og er død af sult";
-        String reason3 = "Fisken er fanget i et uloveligt fiskenet";
-        String reason4 = "Fisken har viklet sig ind i en plasitkpose og er druknet";
-        String reason5 = "Fisken har troet plastik var mad og er død af sult";
-        String reason6 = "Fisken har noget om kroppen og er blevet for tung til at følge med sin stime";
-        setDeathReason(reason1);
+        this.count++;
+        if(this.count == 1){
+            setDeathReason("Fisken er viklet ind i en fiskesnor og er druknet");}
+        else if (this.count ==2) { setDeathReason("Fisken har fået plastik i spiserøret og er død af sult");}
+        else if (this.count ==3) {setDeathReason("Fisken er fanget i et uloveligt fiskenet");}
+        else if (this.count ==4) {setDeathReason("Fisken har viklet sig ind i en plasitkpose og er druknet");}
+        else if (this.count ==5) {setDeathReason("Fisken har troet plastik var mad og er død af sult");}
+        else if (this.count==6) {setDeathReason("Fisken har noget om kroppen og er blevet for tung til at følge med sin stime");
+        this.count =0;}
     }
 }
