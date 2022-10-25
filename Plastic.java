@@ -3,13 +3,13 @@ import java.util.Random;
 
 public class Plastic implements Spawnable{
 
-    private double amount;
+    private int amount;
 
-    public void setAmount(double amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 
-    public double getAmount() {
+    public int getAmount() {
         return amount;
     }
 
@@ -25,12 +25,12 @@ public class Plastic implements Spawnable{
 
     @Override
     public void spawn() {
-            int min =100;
-            int max =1400;
-            Random random = new Random();
-            double amount = min + (max-min) * random.nextDouble();
+        int min = 100;
+        int max = 1400;
+        int amount = (int) (Math.random() * ((max - min) + 1)) + min;
 
-            setAmount(amount);
+        setAmount(amount);
     }
+
 }
 

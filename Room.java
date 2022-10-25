@@ -2,7 +2,6 @@ package worldOfZuul;
 
 import java.util.Set;
 import java.util.HashMap;
-import java.util.Iterator;
 
 
 public class Room 
@@ -18,17 +17,17 @@ public class Room
         exits = new HashMap<String, Room>();
     }
 
-    public double spawnPlastic(){
+    public int spawnPlastic(){
         Plastic plastic = new Plastic();
-        double amount = 0.0;
+        int amount = 0;
         if(plastic.spawnChance() == true){
             plastic.spawn();
             amount = plastic.getAmount();
         }
         else if (plastic.spawnChance() == false){
-            amount = 0.0;
+            amount = 0;
         }
-        return ((int)amount);
+        return (amount);
     }
 
     public boolean spawnDeadFish(){
@@ -60,7 +59,7 @@ public class Room
     }
 
     public String getLongDescription() {
-        double plastic = spawnPlastic();
+        int plastic = spawnPlastic();
         boolean fish = spawnDeadFish();
 //      Hvis man er på havnen
         if (checkRoom()) {
@@ -73,10 +72,10 @@ public class Room
             return "Du er " + description + ". Der er en død fisk "+"\n" + getExitString();}
 //        Hvis der er fisk og plast
         else if (plastic>0 && fish) {
-            return "Du er " + description + ". Der er en død fisk og "+plastic+"tons plastik i vandet"+"\n" + getExitString();}
+            return "Du er " + description + ". Der er en død fisk og "+plastic+" tons plastik i vandet"+"\n" + getExitString();}
 //        Hvis der ikke er fisk men der er plastik
         else if (plastic>0 && !fish) {
-            return "Du er " + description + ". Der er " +plastic+ "tons plastik i vandet"+"\n" + getExitString();}
+            return "Du er " + description + ". Der er " +plastic+ " tons plastik i vandet"+"\n" + getExitString();}
 
         return "fejl i indlæsning af område";
     }
