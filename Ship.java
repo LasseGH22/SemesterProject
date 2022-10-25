@@ -23,11 +23,17 @@ public class Ship {
         return inventory;
     }
     public void collectPlastic(Plastic plastic) {
-        inventory.add(plastic);
+        if ((this.capacity + plastic.getAmount()) <= this.capacityMax){
+            this.capacity += plastic.getAmount();
+            inventory.add(plastic);
+        }
+        else System.out.println("Du har ikke kapacitet nok, bortskaf dit plast i havnen");
     }
+
     public void collectFish(DeadFish deadfish) {
         inventory.add(deadfish);
     }
+
     public int disposePlastic() {
         int amountOfPlastic = 0;
         for (Spawnable item : inventory) {
