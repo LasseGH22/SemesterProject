@@ -205,6 +205,9 @@ public class Game {
     public Date getGameDate(){
         return gameDate;
     }
+    public int getShipCapacity(){
+        return skipperSkrald.getCapacity();
+    }
 
     public boolean getIsCollected(){
         return isCollected;

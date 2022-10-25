@@ -115,7 +115,7 @@ public class CommandLineClient {
                 break;
             case DISPOSE:
                 if (game.dispose(command)) {
-                    System.out.println("Du har bortskaffet en masse plast");
+                    System.out.println("Du har genbrugt " + game.getShipCapacity() + " tons plast");
                 }
                 else {
                     System.out.println("Du må ikke smide plastik i vandet. Sejl tilbage til havnen for at genbruge plasten!");
