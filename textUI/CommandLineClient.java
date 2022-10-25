@@ -107,7 +107,15 @@ public class CommandLineClient {
                 else {
                     System.out.println("Du er ikke i harbor");
                 }
-                //LAV NY CASE "COLLECT"
+            case INFO:
+                if (game.info(command)) {
+                    System.out.println(game.getDeathReason());
+                }
+                else {
+                    System.out.println();
+                }
+            }
+        return wantToQuit;
         }
 
         /*if (commandWord == Commands.UNKNOWN) {
@@ -135,6 +143,6 @@ public class CommandLineClient {
             }
 
         } */
-        return wantToQuit;
+
     }
-}
+

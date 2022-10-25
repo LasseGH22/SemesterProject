@@ -3,7 +3,7 @@ package worldOfZuul;
 public enum Commands
 {
     // LAV NY COMMAND; COLLECT
-    GO("go"), QUIT("quit"), HELP("help"), UNKNOWN("?"), DISPOSE("dispose");
+    GO("go"), QUIT("quit"), HELP("help"), UNKNOWN("?"), DISPOSE("dispose"), INFO("info");
     
     private String commandName;
     
