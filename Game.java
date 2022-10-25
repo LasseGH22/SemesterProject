@@ -8,7 +8,7 @@ public class Game {
 
     private Room currentRoom;
     private CommandWords commands;
-
+    private boolean isCollected;
     private Date gameDate = new Date(122, Calendar.OCTOBER,0);
 
     public Game() {
@@ -176,7 +176,8 @@ public class Game {
 
     public void collect(Command command){
         skipperSkrald.collectPlastic(currentRoom.getCurrentPlastic());
-        System.out.println(skipperSkrald.getInventory());
+        isCollected = true;
+        //System.out.println(skipperSkrald.getInventory());
     }
 
     public String getRoomDescription() {
@@ -197,12 +198,16 @@ public class Game {
 
 
     public boolean isIt2050() {
-        if(gameDate.compareTo(new Date(150,0,0)) > 0) {
+        if(gameDate.compareTo(new Date(149,11,29)) >= 0) {
             return true;
         } else return false;
     }
     public Date getGameDate(){
         return gameDate;
+    }
+
+    public boolean getIsCollected(){
+        return isCollected;
     }
     public void newMove() {
         String[] months = {"januar", "februar", "marts", "april", "maj", "juni", "juli", "august", "september", "oktober", "november", "december"};
@@ -211,6 +216,7 @@ public class Game {
         oneMonth.add(Calendar.MONTH,+1);
         System.out.println("Det er nu " + months[oneMonth.get(Calendar.MONTH)] + " i år " + oneMonth.get(Calendar.YEAR));
         gameDate = oneMonth.getTime();
+        isCollected = false;
 
     }
 

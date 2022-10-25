@@ -7,6 +7,10 @@ package worldOfZuul.textUI;
 
 import worldOfZuul.*;
 
+import javax.swing.plaf.synth.SynthGraphicsUtils;
+import javax.swing.plaf.synth.SynthOptionPaneUI;
+import java.sql.SQLOutput;
+
 /**
  *
  * @author ancla
@@ -30,7 +34,6 @@ public class CommandLineClient {
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        System.out.println("Tak fordi du spillede med. Farvel.");
     }
     public void pressEnterToContinue() {
         try {
@@ -67,6 +70,14 @@ public class CommandLineClient {
         }
     }
 
+    private void quitMessage(){
+        System.out.println("Tak for din vilje til at lære mere om vores verdenshave.");
+        System.out.println( "Sørg altid for at bruge så lidt plastik som muligt." +
+                            "\n. Sørg for at sortere dit plastaffald så det ikke ender i havene."+
+                            "\n. Dermed slipper Skipper Skrald også for at have så travlt." +
+                            "\n. Din score blev: " + /*SCORE GETTER */ "!!");
+    }
+
     //Controller
     public boolean processCommand(Command command) {
         boolean wantToQuit = false;
@@ -83,6 +94,10 @@ public class CommandLineClient {
                 printHelp();
                 break;
             case GO:
+                if(game.isIt2050()){
+                    quitMessage();
+                    wantToQuit = true;
+                }else
                 if (game.goRoom(command)) {
                     game.newMove();
                     System.out.println(game.getRoomDescription());
@@ -92,6 +107,7 @@ public class CommandLineClient {
                 break;
             case QUIT:
                 if (game.quit(command)) {
+                    quitMessage();
                     wantToQuit = true;
                 } else {
                     System.out.println("Quit hvad?");
@@ -102,12 +118,15 @@ public class CommandLineClient {
                     System.out.println("Du har bortskaffet en masse plast");
                 }
                 else {
-                    System.out.println("Du er ikke i havnen");
-                }
+                    System.out.println("Du må ikke smide plastik i vandet. Sejl tilbage til havnen for at genbruge plasten!");
+                } break;
             case COLLECT:
-                  game.collect(command);
-                  break;
-
+                if (!game.getIsCollected()){
+                    game.collect(command);
+                }
+                else {
+                    System.out.println("Der er ikke noget plastik at indsamle");
+                } break;
             case INFO:
                 if (game.info(command)) {
                     System.out.println(game.getDeathReason());
