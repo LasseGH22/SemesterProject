@@ -54,7 +54,6 @@ public class CommandLineClient {
             try{ Thread.sleep(1000);}
             catch(Exception e) {System.out.println(e);}
             System.out.println("Skriv '" + Commands.HELP + "' hvis du har brug for hjælp");
-            System.out.println("Halli Halløj");
             System.out.println();
             try{ Thread.sleep(1000);}
             catch(Exception e) {System.out.println(e);}
@@ -86,7 +85,6 @@ public class CommandLineClient {
             case GO:
                 if (game.goRoom(command)) {
                     game.newMove();
-                    System.out.println(game.getGameDate());
                     System.out.println(game.getRoomDescription());
                 } else {
                     System.out.println("Der er land i sigte, du kan ikke sejle den vej!");

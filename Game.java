@@ -204,9 +204,11 @@ public class Game {
         return gameDate;
     }
     public void newMove() {
+        String[] months = {"januar", "februar", "marts", "april", "maj", "juni", "juli", "august", "september", "oktober", "november", "december"};
         Calendar oneMonth = Calendar.getInstance();
         oneMonth.setTime(gameDate);
         oneMonth.add(Calendar.MONTH,+1);
+        System.out.println("Det er nu " + months[oneMonth.get(Calendar.MONTH)] + " i år " + oneMonth.get(Calendar.YEAR));
         gameDate = oneMonth.getTime();
 
     }
