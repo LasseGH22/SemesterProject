@@ -9,7 +9,9 @@ public class Room
 {
     private String description;
     private HashMap<String, Room> exits;
-
+    public Room(){
+        this.description = "Dette rom er tomt";
+    }
     public Room(String description) 
     {
         this.description = description;
@@ -60,8 +62,11 @@ public class Room
     public String getLongDescription() {
         double plastic = spawnPlastic();
         boolean fish = spawnDeadFish();
-
+//      Hvis man er på havnen
+        if (checkRoom()) {
+            return "Du er " + description + "\n" + getExitString(); }
 //        Hvis der er hverken fisk eller plast
+
         if (getCheckRoom()) {
             return "Du er " + description + "\n" + getExitString();
         }
@@ -104,11 +109,11 @@ public class Room
     {
         return exits.get(direction);
     }
-    public boolean getCheckRoom(){
-        if (getShortDescription() == "nu i havnen") {
+
+    public boolean checkRoom(){
+        if(getShortDescription()=="nu i havnen") {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }

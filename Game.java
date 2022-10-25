@@ -1,11 +1,15 @@
 package worldOfZuul;
 
 import java.util.List;
+import java.util.Date;
+import java.util.Calendar;
 
 public class Game {
 
     private Room currentRoom;
     private CommandWords commands;
+
+    private Date gameDate = new Date(122, Calendar.OCTOBER,0);
 
     public Game() {
         createRooms();
@@ -160,9 +164,20 @@ public class Game {
         }
         return false;
     }
-    public boolean collect(Command command) {
-        return false;                               // IKKE FÆRDIG OVERHOVEDET!!! FORDI JEG FATTER INGEN TING!!!!!!!!!!!!!!!!!!!!
+
+    public boolean info(Command command) {
+        if (currentRoom.spawnDeadFish()) {
+            return true;
+        }
+        return false;
     }
+
+    public String getDeathReason() {
+        return currentRoom.getDeathReason();
+    }
+
+    //TILFØJ METODE "COLLECT"
+
     public String getRoomDescription() {
         return currentRoom.getLongDescription();
     }
@@ -177,6 +192,23 @@ public class Game {
 
     public Command getCommand(String word1, String word2) {
         return new CommandImplementation(commands.getCommand(word1), word2);
+    }
+
+
+    public boolean isIt2050() {
+        if(gameDate.compareTo(new Date(150,0,0)) > 0) {
+            return true;
+        } else return false;
+    }
+    public Date getGameDate(){
+        return gameDate;
+    }
+    public void newMove() {
+        Calendar oneMonth = Calendar.getInstance();
+        oneMonth.setTime(gameDate);
+        oneMonth.add(Calendar.MONTH,+1);
+        gameDate = oneMonth.getTime();
+
     }
 
 

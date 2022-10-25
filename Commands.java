@@ -4,6 +4,7 @@ public enum Commands
 {
     GO("sejl"), QUIT("quit"), HELP("hjælp"), UNKNOWN("?"),
     DISPOSE("bortskaf"), COLLECT("indsaml");
+
     
     private String commandName;
     
