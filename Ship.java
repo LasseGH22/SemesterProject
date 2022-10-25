@@ -32,9 +32,10 @@ public class Ship {
         int amountOfPlastic = 0;
         for (Spawnable item : inventory) {
             if (item instanceof Plastic) {
-                amountOfPlastic = amountOfPlastic + (int)((Plastic)item).getAmount();
+                amountOfPlastic = amountOfPlastic + ((Plastic)item).getAmount();
             }
         }
+        inventory.clear();
         return amountOfPlastic;
     }
 }
