@@ -177,6 +177,7 @@ public class Game {
     }
 
     //TILFØJ METODE "COLLECT"
+
     public String getRoomDescription() {
         return currentRoom.getLongDescription();
     }
@@ -193,6 +194,7 @@ public class Game {
         return new CommandImplementation(commands.getCommand(word1), word2);
     }
 
+
     public boolean isIt2050() {
         if(gameDate.compareTo(new Date(150,0,0)) > 0) {
             return true;
@@ -208,5 +210,6 @@ public class Game {
         gameDate = oneMonth.getTime();
 
     }
+
 
 }

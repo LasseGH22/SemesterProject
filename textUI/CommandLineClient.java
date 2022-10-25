@@ -5,9 +5,7 @@
  */
 package worldOfZuul.textUI;
 
-import worldOfZuul.Command;
-import worldOfZuul.Commands;
-import worldOfZuul.Game;
+import worldOfZuul.*;
 
 /**
  *
@@ -31,7 +29,7 @@ public class CommandLineClient {
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        System.out.println("Thank you for playing.  Good bye.");
+        System.out.println("Tak fordi du spillede med. Farvel.");
     }
     public void pressEnterToContinue() {
         try {
@@ -78,13 +76,11 @@ public class CommandLineClient {
 
         switch (commandWord) {
             case UNKNOWN:
-                System.out.println("I don't know what you mean...");
+                System.out.println("Jeg ved ikke hvad du mener....");
                 return false;
             case HELP:
-                System.out.println("You are lost. You are alone. You wander");
-                System.out.println("around at the university.");
-                System.out.println();
-                System.out.println("Your command words are:");
+                System.out.println("Du sejler forvirret rundt på verdenshavet.");
+                System.out.println("Dine kommandoer er:");
                 printHelp();
                 break;
             case GO:
@@ -93,23 +89,30 @@ public class CommandLineClient {
                     System.out.println(game.getGameDate());
                     System.out.println(game.getRoomDescription());
                 } else {
-                    System.out.println("Can't walk in that direction.");
+                    System.out.println("Der er land i sigte, du kan ikke sejle den vej!");
                 }
                 break;
             case QUIT:
                 if (game.quit(command)) {
                     wantToQuit = true;
                 } else {
-                    System.out.println("Quit what?");
+                    System.out.println("Quit hvad?");
                 }
                 break;
             case DISPOSE:
                 if (game.dispose(command)) {
-                    System.out.println("Du har disposed");
+                    System.out.println("Du har bortskaffet en masse plast");
                 }
                 else {
-                    System.out.println("Du er ikke i harbor");
+                    System.out.println("Du er ikke i havnen");
                 }
+                /*
+            case COLLECT:
+                if (game.collect(command)) {
+                    System.out.println("Du har fjernet ");          // DET HER LORT ER HELLER IKKE FÆRDIG!!!!!!!!!!!!!!
+                }
+                */
+
             case INFO:
                 if (game.info(command)) {
                     System.out.println(game.getDeathReason());
@@ -117,40 +120,12 @@ public class CommandLineClient {
                 else {
                     System.out.println();
                 }
-            }
+        }
+
         return wantToQuit;
-        }
 
-        /*if (commandWord == Commands.UNKNOWN) {
-            System.out.println("I don't know what you mean...");
-            return false;
-        }
 
-        if (commandWord == Commands.HELP) {
-            System.out.println("You are lost. You are alone. You wander");
-            System.out.println("around at the university.");
-            System.out.println();
-            System.out.println("Your command words are:");
-            printHelp();
-        } else if (commandWord == Commands.GO) {
-            if (game.goRoom(command)) {
-                System.out.println(game.getRoomDescription());
-            } else {
-                System.out.println("Can't walk in that direction.");
-            }
-        } else if (commandWord == Commands.QUIT) {
-            if (game.quit(command)) {
-                wantToQuit = true;
-            } else {
-                System.out.println("Quit what?");
-            }
-        } else if (commandWord == Commands.DISPOSE) {
-            if (game.getCurrentRoom() == game.getHarbour()) {
-                System.out.println("Du har afleveret plastik til genanvendelse på havnen");
-            } else {
-                System.out.println("Du må ikke smide plastik i vandet -.-");
-            }
-        } */
+        }
 
     }
 
