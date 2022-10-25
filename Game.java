@@ -15,8 +15,6 @@ public class Game {
         createRooms();
         commands = new CommandWordsImplementation();
     }
-    //Creates the ship
-    //Should be moved to constructor
     private Ship skipperSkrald = new Ship();
     private void createRooms() {
         Room A1, A2, A3, A4, A5;
@@ -176,7 +174,10 @@ public class Game {
         return currentRoom.getDeathReason();
     }
 
-    //TILFØJ METODE "COLLECT"
+    public void collect(Command command){
+        skipperSkrald.collectPlastic(currentRoom.getCurrentPlastic());
+        System.out.println(skipperSkrald.getInventory());
+    }
 
     public String getRoomDescription() {
         return currentRoom.getLongDescription();

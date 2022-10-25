@@ -8,8 +8,9 @@ public class Room
 {
     private String description;
     private HashMap<String, Room> exits;
+    private Plastic currentPlastic;
     public Room(){
-        this.description = "Dette rom er tomt";
+        this.description = "Dette rum er tomt";
     }
     public Room(String description) 
     {
@@ -27,7 +28,11 @@ public class Room
         else if (plastic.spawnChance() == false){
             amount = 0;
         }
+        this.currentPlastic = plastic;
         return (amount);
+    }
+    public Plastic getCurrentPlastic() {
+        return currentPlastic;
     }
 
     public boolean spawnDeadFish(){
@@ -65,25 +70,21 @@ public class Room
         if (checkRoom()) {
             return "Du er " + description + "\n" + getExitString(); }
 //        Hvis der er hverken fisk eller plast
-
         else if(plastic<100 && !fish){
             return "Du er " + description + ". Der er intet andet end vand" +"\n" + getExitString();}
 //        Hvis der er fisk men ikke plast
         else if (plastic<100 && fish) {
-            return "Du er " + description + ". Der er en død fisk "+"\n" + getExitString();}
+            return "Du er " + description + ". Der er en død fisk. For at undersøge skriv >info< "+"\n" + getExitString();}
 //        Hvis der er fisk og plast
         else if (plastic>0 && fish) {
-            return "Du er " + description + ". Der er en død fisk og "+plastic+" tons plastik i vandet"+"\n" + getExitString();}
+            return "Du er " + description + ". Der er en død fisk. For at undersøge skriv >info<"+"\n Der er " +plastic+ " tons plastik i vandet. >indsaml< "+"\n" + getExitString();}
 //        Hvis der ikke er fisk men der er plastik
         else if (plastic>0 && !fish) {
-            return "Du er " + description + ". Der er " +plastic+ " tons plastik i vandet"+"\n" + getExitString();}
+            return "Du er " + description + ". Der er " +plastic+ " tons plastik i vandet. >indsaml< "+"\n" + getExitString();}
 
         return "fejl i indlæsning af område";
     }
-    public String interact(){
 
-        return "";
-    }
     public String inHarbor(){
         return "Du er " + description +"\n" + getExitString();}
 

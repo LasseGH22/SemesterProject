@@ -19,6 +19,7 @@ public class CommandLineClient {
     public CommandLineClient() {
         game = new Game();
         parser = new Parser(game);
+
     }
 
     public void play() {
@@ -44,18 +45,17 @@ public class CommandLineClient {
             System.out.println("Dog er vi mennesker ved at ødelægge det for os selv, grundet vores generelt dårlige håndtering af plastik.");
             System.out.println("Ifølge forskerne ender der årligt mere end 8 tons plastik i verdenshavene og det formodes at i 2050 vil der være mere plastik i havene end mængden af dyr");
             System.out.println("> Tryk enter");
-            System.out.println();
             pressEnterToContinue();
             System.out.println("Du, Skipper Skrald skal hjælpe med at rede verdenshavene");
             System.out.println("Du skal sejle ud med dit skib, indsamle plast og herefter sejle tilbage til havnen og sende plasten til genbrug.");
+            System.out.println("> Tryk enter");
             pressEnterToContinue();
             System.out.println("Held og lykke");
-            System.out.println();
-            try{ Thread.sleep(1000);}
+            try{ Thread.sleep(900);}
             catch(Exception e) {System.out.println(e);}
             System.out.println("Skriv '" + Commands.HELP + "' hvis du har brug for hjælp");
             System.out.println();
-            try{ Thread.sleep(1000);}
+            try{ Thread.sleep(900);}
             catch(Exception e) {System.out.println(e);}
             System.out.println(game.getRoomDescription());
     }
@@ -104,12 +104,9 @@ public class CommandLineClient {
                 else {
                     System.out.println("Du er ikke i havnen");
                 }
-                /*
             case COLLECT:
-                if (game.collect(command)) {
-                    System.out.println("Du har fjernet ");          // DET HER LORT ER HELLER IKKE FÆRDIG!!!!!!!!!!!!!!
-                }
-                */
+                  game.collect(command);
+                  break;
 
             case INFO:
                 if (game.info(command)) {
