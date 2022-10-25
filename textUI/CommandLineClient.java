@@ -75,7 +75,42 @@ public class CommandLineClient {
 
         Commands commandWord = command.getCommandName();
 
-        if (commandWord == Commands.UNKNOWN) {
+        switch (commandWord) {
+            case UNKNOWN:
+                System.out.println("I don't know what you mean...");
+                return false;
+            case HELP:
+                System.out.println("You are lost. You are alone. You wander");
+                System.out.println("around at the university.");
+                System.out.println();
+                System.out.println("Your command words are:");
+                printHelp();
+                break;
+            case GO:
+                if (game.goRoom(command)) {
+                    System.out.println(game.getRoomDescription());
+                } else {
+                    System.out.println("Can't walk in that direction.");
+                }
+                break;
+            case QUIT:
+                if (game.quit(command)) {
+                    wantToQuit = true;
+                } else {
+                    System.out.println("Quit what?");
+                }
+                break;
+            case DISPOSE:
+                if (game.dispose(command)) {
+                    System.out.println("Du har disposed");
+                }
+                else {
+                    System.out.println("Du er ikke i harbor");
+                }
+                //LAV NY CASE "COLLECT"
+        }
+
+        /*if (commandWord == Commands.UNKNOWN) {
             System.out.println("I don't know what you mean...");
             return false;
         }
@@ -99,7 +134,7 @@ public class CommandLineClient {
                 System.out.println("Quit what?");
             }
 
-        }
+        } */
         return wantToQuit;
     }
 }

@@ -83,6 +83,10 @@ public class Room
     public String inHarbor(){
         return "Du er " + description +"\n" + getExitString();}
 
+    public boolean isHarbor() {
+        return false;
+    }
+
     private String getExitString()
     {
         String returnString = "Udveje:";
