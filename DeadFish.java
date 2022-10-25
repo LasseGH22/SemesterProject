@@ -19,7 +19,7 @@ public class DeadFish implements Spawnable {
         Random random = new Random();
         int chance = random.nextInt(101);
         chance = chance +1;
-        if(chance<102){
+        if(chance<100){
             return true;
         }
         else return false;

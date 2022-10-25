@@ -89,6 +89,8 @@ public class CommandLineClient {
                 break;
             case GO:
                 if (game.goRoom(command)) {
+                    game.newMove();
+                    System.out.println(game.getGameDate());
                     System.out.println(game.getRoomDescription());
                 } else {
                     System.out.println("Can't walk in that direction.");
@@ -142,7 +144,12 @@ public class CommandLineClient {
             } else {
                 System.out.println("Quit what?");
             }
-
+        } else if (commandWord == Commands.DISPOSE) {
+            if (game.getCurrentRoom() == game.getHarbour()) {
+                System.out.println("Du har afleveret plastik til genanvendelse på havnen");
+            } else {
+                System.out.println("Du må ikke smide plastik i vandet -.-");
+            }
         } */
 
     }
