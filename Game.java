@@ -10,7 +10,7 @@ public class Game {
     private CommandWords commands;
     private boolean isCollected;
     private Date gameDate = new Date(122, Calendar.OCTOBER,0);
-
+    private Room gameHarbor;
     public Game() {
         createRooms();
         commands = new CommandWordsImplementation();
@@ -53,6 +53,7 @@ public class Game {
 
         //Changed Object type from Room to Harbor
         Harbor = new Harbor("nu i havnen");
+        gameHarbor = Harbor;
 
         Room[] allOcean = {A1,A2,A3,A4,A5,B1,B3,B4,B5,C1,C3,D1,D3,D4,D5,E1,E3,E4,E5};
         Room[] allIslands = {B2,C2,C4,C5,D2,E2};
@@ -158,6 +159,7 @@ public class Game {
         if (currentRoom.isHarbor()) {
             int score = skipperSkrald.disposePlastic();
             ((Harbor)currentRoom).setScore(score);
+            getScore();
             return true;
         }
         return false;
@@ -211,6 +213,13 @@ public class Game {
 
     public boolean getIsCollected(){
         return isCollected;
+    }
+
+    public long getScore(){
+        Harbor currentHarbor = (Harbor)gameHarbor;
+        if(currentRoom.isHarbor()){
+          currentHarbor = (Harbor)currentRoom;
+        } return ((long)currentHarbor.getScore());
     }
     public void newMove() {
         String[] months = {"januar", "februar", "marts", "april", "maj", "juni", "juli", "august", "september", "oktober", "november", "december"};

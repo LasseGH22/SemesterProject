@@ -73,9 +73,9 @@ public class CommandLineClient {
     private void quitMessage(){
         System.out.println("Tak for din vilje til at lære mere om vores verdenshave.");
         System.out.println( "Sørg altid for at bruge så lidt plastik som muligt." +
-                            "\n. Sørg for at sortere dit plastaffald så det ikke ender i havene."+
-                            "\n. Dermed slipper Skipper Skrald også for at have så travlt." +
-                            "\n. Din score blev: " + /*SCORE GETTER */ "!!");
+                            "\nSørg for at sortere dit plastaffald så det ikke ender i havene."+
+                            "\nDermed slipper Skipper Skrald også for at have så travlt." +
+                            "\nDin score blev: " + game.getScore() + "!!");
     }
 
     //Controller

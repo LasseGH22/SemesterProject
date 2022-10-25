@@ -2,7 +2,7 @@ package worldOfZuul;
 
 public class Harbor extends Room {
 
-    private double score;
+    private long score;
 
     public Harbor(String description) {
         super(description);
