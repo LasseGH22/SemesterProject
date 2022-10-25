@@ -25,12 +25,17 @@ public class Plastic implements Spawnable{
 
     @Override
     public void spawn() {
-            int min =100;
-            int max =1400;
+
+            double min =100;
+            double max =1400;
             Random random = new Random();
             double amount = min + (max-min) * random.nextDouble();
 
             setAmount(amount);
+    }
+    @Override
+    public String toString() {
+        return amount + " tons plast";          // DENNE METODE ER IKKE FÆRDIG
     }
 }
 
