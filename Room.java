@@ -67,9 +67,6 @@ public class Room
             return "Du er " + description + "\n" + getExitString(); }
 //        Hvis der er hverken fisk eller plast
 
-        if (getCheckRoom()) {
-            return "Du er " + description + "\n" + getExitString();
-        }
         else if(plastic<100 && !fish){
             return "Du er " + description + ". Der er intet andet end vand" +"\n" + getExitString();}
 //        Hvis der er fisk men ikke plast

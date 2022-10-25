@@ -106,12 +106,13 @@ public class CommandLineClient {
                 else {
                     System.out.println("Du er ikke i havnen");
                 }
+                /*
             case COLLECT:
                 if (game.collect(command)) {
                     System.out.println("Du har fjernet ");          // DET HER LORT ER HELLER IKKE FÆRDIG!!!!!!!!!!!!!!
                 }
-        }
-        return wantToQuit;
+                */
+
             case INFO:
                 if (game.info(command)) {
                     System.out.println(game.getDeathReason());
@@ -119,8 +120,11 @@ public class CommandLineClient {
                 else {
                     System.out.println();
                 }
-            }
+        }
+
         return wantToQuit;
+
+
         }
 
     }
