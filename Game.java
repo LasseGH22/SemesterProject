@@ -160,7 +160,9 @@ public class Game {
         }
         return false;
     }
-    //TILFØJ METODE "COLLECT"
+    public boolean collect(Command command) {
+        return false;                               // IKKE FÆRDIG OVERHOVEDET!!! FORDI JEG FATTER INGEN TING!!!!!!!!!!!!!!!!!!!!
+    }
     public String getRoomDescription() {
         return currentRoom.getLongDescription();
     }
@@ -176,5 +178,6 @@ public class Game {
     public Command getCommand(String word1, String word2) {
         return new CommandImplementation(commands.getCommand(word1), word2);
     }
+
 
 }

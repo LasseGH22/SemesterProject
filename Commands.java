@@ -2,8 +2,8 @@ package worldOfZuul;
 
 public enum Commands
 {
-    // LAV NY COMMAND; COLLECT
-    GO("go"), QUIT("quit"), HELP("help"), UNKNOWN("?"), DISPOSE("dispose");
+    GO("sejl"), QUIT("quit"), HELP("hjælp"), UNKNOWN("?"),
+    DISPOSE("bortskaf"), COLLECT("indsaml");
     
     private String commandName;
     

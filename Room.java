@@ -62,17 +62,20 @@ public class Room
         boolean fish = spawnDeadFish();
 
 //        Hvis der er hverken fisk eller plast
-        if(plastic<100 && !fish){
+        if (getCheckRoom()) {
+            return "Du er " + description + "\n" + getExitString();
+        }
+        else if(plastic<100 && !fish){
             return "Du er " + description + ". Der er intet andet end vand" +"\n" + getExitString();}
 //        Hvis der er fisk men ikke plast
         else if (plastic<100 && fish) {
             return "Du er " + description + ". Der er en død fisk "+"\n" + getExitString();}
 //        Hvis der er fisk og plast
         else if (plastic>0 && fish) {
-            return "Du er " + description + ". Der er en død fisk og "+plastic+"tons plastik i vandet"+"\n" + getExitString();}
+            return "Du er " + description + ". Der er en død fisk og "+plastic+" tons plastik i vandet"+"\n" + getExitString();}
 //        Hvis der ikke er fisk men der er plastik
         else if (plastic>0 && !fish) {
-            return "Du er " + description + ". Der er " +plastic+ "tons plastik i vandet"+"\n" + getExitString();}
+            return "Du er " + description + ". Der er " +plastic+ " tons plastik i vandet"+"\n" + getExitString();}
 
         return "fejl i indlæsning af område";
     }
@@ -100,6 +103,14 @@ public class Room
     public Room getExit(String direction) 
     {
         return exits.get(direction);
+    }
+    public boolean getCheckRoom(){
+        if (getShortDescription() == "nu i havnen") {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
 
