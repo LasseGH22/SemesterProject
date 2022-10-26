@@ -163,15 +163,8 @@ public class Game {
         return false;
     }
 
-    public boolean info(Command command) {
-        if (currentRoom.spawnDeadFish()) {
-            return true;
-        }
-        return false;
-    }
-
-    public String getDeathReason() {
-        return currentRoom.getDeathReason();
+    public void getDeathReason(Command command) {
+        System.out.println(currentRoom.getDeadFishDeath());
     }
 
     public void collect(Command command){

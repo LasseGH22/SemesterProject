@@ -9,6 +9,7 @@ public class Room
     private String description;
     private HashMap<String, Room> exits;
     private Plastic currentPlastic;
+    private DeadFish deadFishDeath;
     public Room(){
         this.description = "Dette rum er tomt";
     }
@@ -19,6 +20,7 @@ public class Room
     }
 
     public int spawnPlastic(){
+//      Metode der laver plastik objekt, kører spawnchance og herefter gemmer tilfældig mængde i "currentPlastic" og retunere "amount".
         Plastic plastic = new Plastic();
         int amount = 0;
         if(plastic.spawnChance() == true){
@@ -37,23 +39,20 @@ public class Room
 
     public boolean spawnDeadFish(){
         DeadFish fish = new DeadFish();
-        boolean spawn = fish.spawnChance();
-        return spawn;
-    }
-
-    public String getDeathReason(){
-        DeadFish fish = new DeadFish();
-        String death = "";
-        if(fish.spawnChance()){
+        boolean deadFish = fish.spawnChance();
+        if (deadFish){
             fish.spawn();
-            death = fish.getDeathReason();
-        } else if (!fish.spawnChance()) {
-            death = "";
+
         }
-        return death;
+        this.deadFishDeath = fish;
+        return deadFish;
     }
 
-    public void setExit(String direction, Room neighbor) 
+    public DeadFish getDeadFishDeath() {
+        return deadFishDeath;
+    }
+
+    public void setExit(String direction, Room neighbor)
     {
         exits.put(direction, neighbor);
     }

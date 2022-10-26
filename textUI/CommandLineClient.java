@@ -109,12 +109,8 @@ public class CommandLineClient {
                   break;
 
             case INFO:
-                if (game.info(command)) {
-                    System.out.println(game.getDeathReason());
-                }
-                else {
-                    System.out.println();
-                }
+                game.getDeathReason(command);
+                break;
         }
 
         return wantToQuit;

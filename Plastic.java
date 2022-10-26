@@ -19,6 +19,7 @@ public class Plastic implements Spawnable{
 
     @Override
     public boolean spawnChance(){
+//      Boolean der giver en 64% chance for at give true
         Random random = new Random();
         int chance = random.nextInt(101);
         if(chance<65){
@@ -29,6 +30,7 @@ public class Plastic implements Spawnable{
 
     @Override
     public void spawn() {
+//      Laver tilfældigt mængde plast nellen 100 og 1400
         int min = 100;
         int max = 1400;
         int amount = (int) (Math.random() * ((max - min) + 1)) + min;

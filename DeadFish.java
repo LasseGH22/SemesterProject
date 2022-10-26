@@ -19,7 +19,7 @@ public class DeadFish implements Spawnable {
         Random random = new Random();
         int chance = random.nextInt(101);
         chance = chance +1;
-        if(chance<100){
+        if(chance<101){
             return true;
         }
         else return false;
@@ -28,7 +28,7 @@ public class DeadFish implements Spawnable {
     @Override
     public void spawn() {
         Random rng = new Random();
-        int random = rng.nextInt(7);
+        int random = rng.nextInt(7)+1;
 
         switch (random) {
             case 1:
@@ -55,5 +55,9 @@ public class DeadFish implements Spawnable {
                 setDeathReason("Fisken har noget om kroppen og er blevet for tung til at følge med sin stime");
                 break;
         }
+    }
+    @Override
+    public String toString(){
+        return "" +getDeathReason();
     }
 }
