@@ -19,6 +19,4 @@ public class Harbor extends Room {
     public boolean isHarbor() {
         return true;
     }
-
-
 }

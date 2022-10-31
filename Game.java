@@ -239,6 +239,4 @@ public class Game {
         isCollected = false;                                                              // Resets isCollected for the plastic
 
     }
-
-
 }
