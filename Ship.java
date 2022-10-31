@@ -46,6 +46,7 @@ public class Ship {
         inventory.clear();
         return amountOfPlastic;
     }
+    // Get method for the current capacity of the ship.
     public int getCapacity(){
         return this.capacity;
     }

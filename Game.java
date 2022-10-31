@@ -6,16 +6,20 @@ import java.util.Calendar;
 
 public class Game {
 
-    private Room currentRoom;
+    private Room currentRoom;                           // Points towards the current room object.
     private CommandWords commands;
-    private boolean isCollected;
-    private Date gameDate = new Date(122, Calendar.OCTOBER,0);
+    private boolean isCollected;                        // True if plastic in current room has been collected once.
+    private Date gameDate = new Date(122,          // Sets the date for the start of the game to October 2022.
+            Calendar.OCTOBER,0);
     private Room gameHarbor;
-    public Game() {
-        createRooms();
+    private Ship skipperSkrald = new Ship();
+
+    public Game() {                                     // Constructor for the game class
+        createRooms();                                  // Creates the rooms in the game
         commands = new CommandWordsImplementation();
     }
-    private Ship skipperSkrald = new Ship();
+
+    // Creates the rooms of the game, 19 of which are ocean rooms, 6 are islands and one Harbor.
     private void createRooms() {
         Room A1, A2, A3, A4, A5;
         Room B1, B2, B3, B4, B5;
@@ -24,6 +28,7 @@ public class Game {
         Room E1, E2, E3, E4, E5;
         Room Harbor;
 
+        // 19 ocean rooms as objects of Room.
         A1 = new Room("ude på havet");
         A2 = new Room("ude på havet");
         A3 = new Room("ude på havet");
@@ -44,6 +49,7 @@ public class Game {
         E4 = new Room("ude på havet");
         E5 = new Room("ude på havet");
 
+        // 6 islands rooms created as objects of Room
         B2 = new Room("strandet på en ø");
         C2 = new Room("strandet på en ø");
         C4 = new Room("strandet på en ø");
@@ -55,9 +61,10 @@ public class Game {
         Harbor = new Harbor("nu i havnen");
         gameHarbor = Harbor;
 
-        Room[] allOcean = {A1,A2,A3,A4,A5,B1,B3,B4,B5,C1,C3,D1,D3,D4,D5,E1,E3,E4,E5};
-        Room[] allIslands = {B2,C2,C4,C5,D2,E2};
+        // Room[] allOcean = {A1,A2,A3,A4,A5,B1,B3,B4,B5,C1,C3,D1,D3,D4,D5,E1,E3,E4,E5};
+        // Room[] allIslands = {B2,C2,C4,C5,D2,E2};
 
+        // Setting exits for all the rooms
         Harbor.setExit("nord",E3);
 
         A1.setExit("syd",B1);
@@ -124,7 +131,7 @@ public class Game {
         E5.setExit("nord",D5);
         E5.setExit("vest",E4);
 
-
+        // Current rooms starts with Harbor
         currentRoom = Harbor;
     }
 
@@ -199,7 +206,7 @@ public class Game {
     }
 
 
-    public boolean isIt2050() {
+    public boolean isIt2050() { //Function to check if the gameDate is currently 2050 or the current move will make it.
         if(gameDate.compareTo(new Date(149,11,29)) >= 0) {
             return true;
         } else return false;
@@ -207,28 +214,29 @@ public class Game {
     public Date getGameDate(){
         return gameDate;
     }
-    public int getShipCapacity(){
+    public int getShipCapacity(){           // Method to return the current used capacity on the ship.
         return skipperSkrald.getCapacity();
     }
 
-    public boolean getIsCollected(){
+    public boolean getIsCollected(){        // Getter for the is collected boolean
         return isCollected;
     }
 
-    public long getScore(){
+    public long getScore(){                 // Returns the score
         Harbor currentHarbor = (Harbor)gameHarbor;
         if(currentRoom.isHarbor()){
           currentHarbor = (Harbor)currentRoom;
         } return ((long)currentHarbor.getScore());
     }
-    public void newMove() {
-        String[] months = {"januar", "februar", "marts", "april", "maj", "juni", "juli", "august", "september", "oktober", "november", "december"};
-        Calendar oneMonth = Calendar.getInstance();
-        oneMonth.setTime(gameDate);
-        oneMonth.add(Calendar.MONTH,+1);
-        System.out.println("Det er nu " + months[oneMonth.get(Calendar.MONTH)] + " i år " + oneMonth.get(Calendar.YEAR));
-        gameDate = oneMonth.getTime();
-        isCollected = false;
+    public void newMove() { // Method for next move used when a player moves on the ocean.
+        String[] months = {"januar", "februar", "marts", "april", "maj", "juni", "juli",  // String array of all the months
+                            "august", "september", "oktober", "november", "december"};
+        Calendar oneMonth = Calendar.getInstance();                                       // Making calender object oneMonth
+        oneMonth.setTime(gameDate);                                                       // Setting time of the object to current gameDate
+        oneMonth.add(Calendar.MONTH,+1);                                           // Increments with one month
+        System.out.println("Det er nu " + months[oneMonth.get(Calendar.MONTH)] + " i år " + oneMonth.get(Calendar.YEAR)); // Prints current month
+        gameDate = oneMonth.getTime();                                                    // Sets the gameDate to the new date
+        isCollected = false;                                                              // Resets isCollected for the plastic
 
     }
 

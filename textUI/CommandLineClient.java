@@ -69,7 +69,7 @@ public class CommandLineClient {
             System.out.println(str + " ");
         }
     }
-
+    // Quit and end message for the game
     private void quitMessage(){
         System.out.println("Tak for din vilje til at lære mere om vores verdenshave.");
         System.out.println( "Sørg altid for at bruge så lidt plastik som muligt." +
@@ -94,20 +94,20 @@ public class CommandLineClient {
                 printHelp();
                 break;
             case GO:
-                if(game.isIt2050()){
-                    quitMessage();
-                    wantToQuit = true;
+                if(game.isIt2050()){  // Checks if is it 2050
+                    quitMessage();    // If it is it will display a quit message
+                    wantToQuit = true;// And set wantToQuit true and end game
                 }else
-                if (game.goRoom(command)) {
-                    game.newMove();
-                    System.out.println(game.getRoomDescription());
+                if (game.goRoom(command)) {     // Goes to the desired room
+                    game.newMove();             // Uses method newMove()
+                    System.out.println(game.getRoomDescription()); // Prints description for current room
                 } else {
-                    System.out.println("Der er land i sigte, du kan ikke sejle den vej!");
+                    System.out.println("Der er land i sigte, du kan ikke sejle den vej!"); // If not a valid exit for the room there is land in the way
                 }
                 break;
             case QUIT:
                 if (game.quit(command)) {
-                    quitMessage();
+                    quitMessage();  // Ending message for the game
                     wantToQuit = true;
                 } else {
                     System.out.println("Quit hvad?");
@@ -121,8 +121,8 @@ public class CommandLineClient {
                     System.out.println("Du må ikke smide plastik i vandet. Sejl tilbage til havnen for at genbruge plasten!");
                 } break;
             case COLLECT:
-                if (!game.getIsCollected()){
-                    game.collect(command);
+                if (!game.getIsCollected()){ //Checks if plastic already has been collected, if not
+                    game.collect(command);   // Plastic is collected
                 }
                 else {
                     System.out.println("Der er ikke noget plastik at indsamle");
