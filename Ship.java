@@ -23,9 +23,11 @@ public class Ship {
         return inventory;
     }
     public void collectPlastic(Plastic plastic) {
-        if ((this.capacity + plastic.getAmount()) <= this.capacityMax){
+        if ((this.capacity + plastic.getAmount()) < this.capacityMax){
             this.capacity += plastic.getAmount();
             inventory.add(plastic);
+            System.out.println( "Du har indsamlet " + plastic.getAmount() + " tons plast." +
+                                "\n Skibet er nu lastet med " + capacity + " tons plast ud af " + capacityMax + " tons plast.");
         }
         else System.out.println("Du har ikke kapacitet nok, bortskaf dit plast i havnen");
     }
@@ -43,5 +45,9 @@ public class Ship {
         }
         inventory.clear();
         return amountOfPlastic;
+    }
+    // Get method for the current capacity of the ship.
+    public int getCapacity(){
+        return this.capacity;
     }
 }

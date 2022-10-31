@@ -7,6 +7,10 @@ package worldOfZuul.textUI;
 
 import worldOfZuul.*;
 
+import javax.swing.plaf.synth.SynthGraphicsUtils;
+import javax.swing.plaf.synth.SynthOptionPaneUI;
+import java.sql.SQLOutput;
+
 /**
  *
  * @author ancla
@@ -30,7 +34,6 @@ public class CommandLineClient {
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        System.out.println("Tak fordi du spillede med. Farvel.");
     }
     public void pressEnterToContinue() {
         try {
@@ -66,6 +69,14 @@ public class CommandLineClient {
             System.out.println(str + " ");
         }
     }
+    // Quit and end message for the game
+    private void quitMessage(){
+        System.out.println("Tak for din vilje til at lære mere om vores verdenshave.");
+        System.out.println( "Sørg altid for at bruge så lidt plastik som muligt." +
+                            "\nSørg for at sortere dit plastaffald så det ikke ender i havene."+
+                            "\nDermed slipper Skipper Skrald også for at have så travlt." +
+                            "\nDin score blev: " + game.getScore() + "!!");
+    }
 
     //Controller
     public boolean processCommand(Command command) {
@@ -83,15 +94,20 @@ public class CommandLineClient {
                 printHelp();
                 break;
             case GO:
-                if (game.goRoom(command)) {
-                    game.newMove();
-                    System.out.println(game.getRoomDescription());
+                if(game.isIt2050()){  // Checks if is it 2050
+                    quitMessage();    // If it is it will display a quit message
+                    wantToQuit = true;// And set wantToQuit true and end game
+                }else
+                if (game.goRoom(command)) {     // Goes to the desired room
+                    game.newMove();             // Uses method newMove()
+                    System.out.println(game.getRoomDescription()); // Prints description for current room
                 } else {
-                    System.out.println("Der er land i sigte, du kan ikke sejle den vej!");
+                    System.out.println("Der er land i sigte, du kan ikke sejle den vej!"); // If not a valid exit for the room there is land in the way
                 }
                 break;
             case QUIT:
                 if (game.quit(command)) {
+                    quitMessage();  // Ending message for the game
                     wantToQuit = true;
                 } else {
                     System.out.println("Quit hvad?");
@@ -99,15 +115,18 @@ public class CommandLineClient {
                 break;
             case DISPOSE:
                 if (game.dispose(command)) {
-                    System.out.println("Du har bortskaffet en masse plast");
+                    System.out.println("Du har genbrugt " + game.getShipCapacity() + " tons plast");
                 }
                 else {
-                    System.out.println("Du er ikke i havnen");
-                }
+                    System.out.println("Du må ikke smide plastik i vandet. Sejl tilbage til havnen for at genbruge plasten!");
+                } break;
             case COLLECT:
-                  game.collect(command);
-                  break;
-
+                if (!game.getIsCollected()){ //Checks if plastic already has been collected, if not
+                    game.collect(command);   // Plastic is collected
+                }
+                else {
+                    System.out.println("Der er ikke noget plastik at indsamle");
+                } break;
             case INFO:
                 game.getDeathReason(command);
                 break;
