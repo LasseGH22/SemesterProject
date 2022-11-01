@@ -45,22 +45,30 @@ public class CommandLineClient {
         System.out.println();
         System.out.println("Velkommen til Skipper Skrald!");
         System.out.println("Verdenshavenes sundhed og velvær er essentielt for at jorden er beboelig for mennesker og dyr.");
+        System.out.println("> Tryk enter");
+        pressEnterToContinue();
         System.out.println("Dog er vi mennesker ved at ødelægge det for os selv, grundet vores generelt dårlige håndtering af plastik.");
         System.out.println("Ifølge forskerne ender der årligt mere end 8 tons plastik i verdenshavene og det formodes at i 2050 vil der være mere plastik i havene end mængden af dyr");
         System.out.println("> Tryk enter");
         pressEnterToContinue();
         System.out.println("Du, Skipper Skrald skal hjælpe med at rede verdenshavene");
         System.out.println("Du skal sejle ud med dit skib, indsamle plast og herefter sejle tilbage til havnen og sende plasten til genbrug.");
+        System.out.println("> Tryk enter");
+        pressEnterToContinue();
+        System.out.println("Målet er at indsamle 100.000 tons plastik inden 2050");
+        System.out.println("Hvor hurtigt kan du gøre det?");
+        System.out.println("> Tryk enter");
+        pressEnterToContinue();
         System.out.println("Skriv " + Commands.COMPASS + " hvis du er bange og ikke kan finde tilbage til havnen");
         System.out.println("MEN PAS DOG PÅ, kompasset er drilsk og tager tid at kigge på.");
         System.out.println("> Tryk enter");
         pressEnterToContinue();
         System.out.println("Held og lykke");
-        try{ Thread.sleep(900);}
+        try{ Thread.sleep(500);}
         catch(Exception e) {System.out.println(e);}
         System.out.println("Skriv '" + Commands.HELP + "' hvis du har brug for hjælp");
         System.out.println();
-        try{ Thread.sleep(900);}
+        try{ Thread.sleep(500);}
         catch(Exception e) {System.out.println(e);}
         System.out.println(game.getRoomDescription());
     }
@@ -73,11 +81,15 @@ public class CommandLineClient {
     }
     // Quit and end message for the game
     private void quitMessage(){
-        System.out.println("Tak for din vilje til at lære mere om vores verdenshave.");
-        System.out.println( "Sørg altid for at bruge så lidt plastik som muligt." +
-                            "\nSørg for at sortere dit plastaffald så det ikke ender i havene."+
-                            "\nDermed slipper Skipper Skrald også for at have så travlt." +
-                            "\nDin score blev: " + game.getScore() + "!!");
+        if (game.getScore() >= 100000) {
+            System.out.println("Tillykke!! Du fik reddet verdenshavet, du fik det allerede løst i " + game.getGameDate());
+        }
+        else if (game.isIt2050()){
+            System.out.println("Desværre, kalenderen siger 2050 og du har tabt spillet. Du fik kun fjernet " + (game.getScore()+game.getShipCapacity())  + "/100000 tons plastik fra verdenshavene.");
+        }
+        else {
+            System.out.println("Hvis man lukker spillet inden 2050, så har man altså tabt, DU!");
+        }
     }
 
     //Controller
@@ -119,6 +131,10 @@ public class CommandLineClient {
             case DISPOSE:
                 if (game.dispose(command)) {
                     System.out.println("Du har genbrugt " + game.getScore() + " tons plast");
+                    if (game.getScore() >= 100000) {
+                        quitMessage();
+                        wantToQuit = true;
+                    }
                 }
                 else {
                     System.out.println("Du må ikke smide plastik i vandet. Sejl tilbage til havnen for at genbruge plasten!");
@@ -137,6 +153,10 @@ public class CommandLineClient {
                 if (!game.isHarbor()){ //If not in harbor, gives a hint on how to reach the harbor in the shortest manner.
                 System.out.println(game.getNavigation()); //Prints out the description
                 game.newMove();
+                if(game.isIt2050()){  // Checks if is it 2050
+                    quitMessage();    // If it is it will display a quit message
+                    wantToQuit = true;// And set wantToQuit true and end game
+                }
                 }
                 else {
                     System.out.println("Du er allerede i havnen.");

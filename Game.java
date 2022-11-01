@@ -9,11 +9,10 @@ public class Game {
     private Room currentRoom;                           // Points towards the current room object.
     private CommandWords commands;
     private boolean isCollected;                        // True if plastic in current room has been collected once.
-    private Date gameDate = new Date(122,          // Sets the date for the start of the game to October 2022.
+    private Date gameDate = new Date(149,          // Sets the date for the start of the game to October 2022.
             Calendar.OCTOBER,0);
     private Room gameHarbor;
     private Ship skipperSkrald = new Ship();
-
     public Game() {                                     // Constructor for the game class
         createRooms();                                  // Creates the rooms in the game
         commands = new CommandWordsImplementation();
@@ -208,8 +207,14 @@ public class Game {
             return true;
         } else return false;
     }
-    public Date getGameDate(){
-        return gameDate;
+    public String getGameDate(){
+        String[] months = {"januar", "februar", "marts", "april", "maj", "juni", "juli",  // String array of all the months
+                "august", "september", "oktober", "november", "december"};
+        Calendar oneMonth = Calendar.getInstance();                                       // Making calender object oneMonth
+        oneMonth.setTime(gameDate);                                                       // Setting time of the object to current gameDate
+        oneMonth.add(Calendar.MONTH,+1);                                           // Increments with one month
+        String message = months[oneMonth.get(Calendar.MONTH)] + " " + oneMonth.get(Calendar.YEAR); // Prints current month
+        return message;
     }
     public int getShipCapacity(){           // Method to return the current used capacity on the ship.
         return skipperSkrald.getCapacity();

@@ -116,7 +116,7 @@ public class Room
     }
 
     public boolean checkRoom(){
-        if(getShortDescription()=="nu i havnen") {
+    if(getShortDescription()=="nu i havnen") {
             return true;
         } else {
             return false;
