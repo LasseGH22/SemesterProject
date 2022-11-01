@@ -14,7 +14,7 @@ public class Ship {
         //Creates a list
         this.inventory = new ArrayList<Spawnable>();
         //Sets the maximum capacity of the ship.
-        this.capacityMax = 12000;
+        this.capacityMax = 6000;
         //Sets the current capacity of the ship.
         this.capacity = 0;
 
@@ -27,19 +27,17 @@ public class Ship {
             this.capacity += plastic.getAmount();
             inventory.add(plastic);
             System.out.println( "Du har indsamlet " + plastic.getAmount() + " tons plast." +
-                                "\n Skibet er nu lastet med " + capacity + " tons plast ud af " + capacityMax + " tons plast.");
+                                "\n Skibet er nu lastet med " + capacity + "/"+ capacityMax + " tons");
         }
         else System.out.println("Du har ikke kapacitet nok, bortskaf dit plast i havnen");
     }
 
-    public void collectFish(DeadFish deadfish) {
-        inventory.add(deadfish);
-    }
 
     public int disposePlastic() {
         int amountOfPlastic = 0;
-        for (Spawnable item : inventory) {
-            if (item instanceof Plastic) {
+        for (Spawnable item : inventory) {  // Iterates through a list of Spawnable
+            if (item instanceof Plastic) {  // and for every instance of platic items, it sets the
+                                            // amountOfPlastic
                 amountOfPlastic = amountOfPlastic + ((Plastic)item).getAmount();
             }
         }

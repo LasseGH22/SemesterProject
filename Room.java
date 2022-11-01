@@ -7,14 +7,21 @@ import java.util.HashMap;
 public class Room 
 {
     private String description;
+    private String whereToSailNext;
     private HashMap<String, Room> exits;
     private Plastic currentPlastic;
     private DeadFish deadFishDeath;
     public Room(){
         this.description = "Dette rum er tomt";
     }
-    public Room(String description) 
+    public Room(String description)
     {
+        this.description = description;
+        exits = new HashMap<String, Room>();
+    }
+    public Room(String description, String whereToSailNext)
+    {
+        this.whereToSailNext = whereToSailNext;
         this.description = description;
         exits = new HashMap<String, Room>();
     }
@@ -35,6 +42,10 @@ public class Room
     }
     public Plastic getCurrentPlastic() {
         return currentPlastic;
+    }
+    public String getWhereToSailNext() {
+        return "Den hurtigste vej til havnen er: " + whereToSailNext + ", det tog lang tid at undersøge.";
+
     }
 
     public boolean spawnDeadFish(){
@@ -84,8 +95,6 @@ public class Room
         return "fejl i indlæsning af område";
     }
 
-    public String inHarbor(){
-        return "Du er " + description +"\n" + getExitString();}
 
     public boolean isHarbor() {
         return false;

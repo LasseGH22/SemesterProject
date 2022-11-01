@@ -42,25 +42,27 @@ public class CommandLineClient {
     }
 
     private void printWelcome() {
-            System.out.println();
-            System.out.println("Velkommen til Skipper Skrald!");
-            System.out.println("Verdenshavenes sundhed og velvær er essentielt for at jorden er beboelig for mennesker og dyr.");
-            System.out.println("Dog er vi mennesker ved at ødelægge det for os selv, grundet vores generelt dårlige håndtering af plastik.");
-            System.out.println("Ifølge forskerne ender der årligt mere end 8 tons plastik i verdenshavene og det formodes at i 2050 vil der være mere plastik i havene end mængden af dyr");
-            System.out.println("> Tryk enter");
-            pressEnterToContinue();
-            System.out.println("Du, Skipper Skrald skal hjælpe med at rede verdenshavene");
-            System.out.println("Du skal sejle ud med dit skib, indsamle plast og herefter sejle tilbage til havnen og sende plasten til genbrug.");
-            System.out.println("> Tryk enter");
-            pressEnterToContinue();
-            System.out.println("Held og lykke");
-            try{ Thread.sleep(900);}
-            catch(Exception e) {System.out.println(e);}
-            System.out.println("Skriv '" + Commands.HELP + "' hvis du har brug for hjælp");
-            System.out.println();
-            try{ Thread.sleep(900);}
-            catch(Exception e) {System.out.println(e);}
-            System.out.println(game.getRoomDescription());
+        System.out.println();
+        System.out.println("Velkommen til Skipper Skrald!");
+        System.out.println("Verdenshavenes sundhed og velvær er essentielt for at jorden er beboelig for mennesker og dyr.");
+        System.out.println("Dog er vi mennesker ved at ødelægge det for os selv, grundet vores generelt dårlige håndtering af plastik.");
+        System.out.println("Ifølge forskerne ender der årligt mere end 8 tons plastik i verdenshavene og det formodes at i 2050 vil der være mere plastik i havene end mængden af dyr");
+        System.out.println("> Tryk enter");
+        pressEnterToContinue();
+        System.out.println("Du, Skipper Skrald skal hjælpe med at rede verdenshavene");
+        System.out.println("Du skal sejle ud med dit skib, indsamle plast og herefter sejle tilbage til havnen og sende plasten til genbrug.");
+        System.out.println("Skriv " + Commands.COMPASS + " hvis du er bange og ikke kan finde tilbage til havnen");
+        System.out.println("MEN PAS DOG PÅ, kompasset er drilsk og tager tid at kigge på.");
+        System.out.println("> Tryk enter");
+        pressEnterToContinue();
+        System.out.println("Held og lykke");
+        try{ Thread.sleep(900);}
+        catch(Exception e) {System.out.println(e);}
+        System.out.println("Skriv '" + Commands.HELP + "' hvis du har brug for hjælp");
+        System.out.println();
+        try{ Thread.sleep(900);}
+        catch(Exception e) {System.out.println(e);}
+        System.out.println(game.getRoomDescription());
     }
 
     private void printHelp() {
@@ -100,6 +102,7 @@ public class CommandLineClient {
                 }else
                 if (game.goRoom(command)) {     // Goes to the desired room
                     game.newMove();             // Uses method newMove()
+                    game.setIsCollected(false);
                     System.out.println(game.getRoomDescription()); // Prints description for current room
                 } else {
                     System.out.println("Der er land i sigte, du kan ikke sejle den vej!"); // If not a valid exit for the room there is land in the way
@@ -129,6 +132,15 @@ public class CommandLineClient {
                 } break;
             case INFO:
                 game.getDeathReason(command);
+                break;
+            case COMPASS:
+                if (!game.isHarbor()){ //If not in harbor, gives a hint on how to reach the harbor in the shortest manner.
+                System.out.println(game.getNavigation()); //Prints out the description
+                game.newMove();
+                }
+                else {
+                    System.out.println("Du er allerede i havnen.");
+                }
                 break;
         }
 

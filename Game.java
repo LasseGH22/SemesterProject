@@ -29,25 +29,25 @@ public class Game {
         Room Harbor;
 
         // 19 ocean rooms as objects of Room.
-        A1 = new Room("ude på havet");
-        A2 = new Room("ude på havet");
-        A3 = new Room("ude på havet");
-        A4 = new Room("ude på havet");
-        A5 = new Room("ude på havet");
-        B1 = new Room("ude på havet");
-        B3 = new Room("ude på havet");
-        B4 = new Room("ude på havet");
-        B5 = new Room("ude på havet");
-        C1 = new Room("ude på havet");
-        C3 = new Room("ude på havet");
-        D1 = new Room("ude på havet");
-        D3 = new Room("ude på havet");
-        D4 = new Room("ude på havet");
-        D5 = new Room("ude på havet");
-        E1 = new Room("ude på havet");
-        E3 = new Room("ude på havet");
-        E4 = new Room("ude på havet");
-        E5 = new Room("ude på havet");
+        A1 = new Room("ude på havet", "øst");
+        A2 = new Room("ude på havet", "øst");
+        A3 = new Room("ude på havet", "syd");
+        A4 = new Room("ude på havet", "vest eller syd");
+        A5 = new Room("ude på havet", "vest eller syd");
+        B1 = new Room("ude på havet", "nord");
+        B3 = new Room("ude på havet", "syd");
+        B4 = new Room("ude på havet", "øst");
+        B5 = new Room("ude på havet", "øst");
+        C1 = new Room("ude på havet", "nord");
+        C3 = new Room("ude på havet", "syd");
+        D1 = new Room("ude på havet", "nord");
+        D3 = new Room("ude på havet", "syd");
+        D4 = new Room("ude på havet", "vest eller syd");
+        D5 = new Room("ude på havet", "vest eller syd");
+        E1 = new Room("ude på havet", "nord");
+        E3 = new Room("ude på havet", "syd");
+        E4 = new Room("ude på havet", "vest");
+        E5 = new Room("ude på havet", "vest");
 
         // 6 islands rooms created as objects of Room
         B2 = new Room("strandet på en ø");
@@ -185,6 +185,9 @@ public class Game {
     public String getRoomDescription() {
         return currentRoom.getLongDescription();
     }
+    public String getNavigation() {
+        return currentRoom.getWhereToSailNext();
+    }
 
     public CommandWords getCommands() {
         return commands;
@@ -229,7 +232,11 @@ public class Game {
         oneMonth.add(Calendar.MONTH,+1);                                           // Increments with one month
         System.out.println("Det er nu " + months[oneMonth.get(Calendar.MONTH)] + " i år " + oneMonth.get(Calendar.YEAR)); // Prints current month
         gameDate = oneMonth.getTime();                                                    // Sets the gameDate to the new date
-        isCollected = false;                                                              // Resets isCollected for the plastic
-
+    }
+    public void setIsCollected(boolean isCollected) {
+        this.isCollected = isCollected;
+    }
+    public boolean isHarbor() {
+        return currentRoom.isHarbor();
     }
 }
