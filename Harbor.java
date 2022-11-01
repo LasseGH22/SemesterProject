@@ -13,7 +13,7 @@ public class Harbor extends Room {
         return score;
     }
     public void setScore(int score) {
-        this.score = score;
+        this.score += score;
     }
     @Override
     public boolean isHarbor() {

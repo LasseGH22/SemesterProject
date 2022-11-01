@@ -48,4 +48,8 @@ public class Ship {
     public int getCapacity(){
         return this.capacity;
     }
+
+    public void resetCapacity() { //Method to reset the current capcity of the ship to 0.
+        this.capacity = 0;
+    }
 }

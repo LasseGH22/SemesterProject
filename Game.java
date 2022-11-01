@@ -167,6 +167,7 @@ public class Game {
             int score = skipperSkrald.disposePlastic();
             ((Harbor)currentRoom).setScore(score);
             getScore();
+            skipperSkrald.resetCapacity();
             return true;
         }
         return false;
@@ -212,6 +213,7 @@ public class Game {
     }
     public int getShipCapacity(){           // Method to return the current used capacity on the ship.
         return skipperSkrald.getCapacity();
+
     }
 
     public boolean getIsCollected(){        // Getter for the is collected boolean
