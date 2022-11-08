@@ -3,7 +3,8 @@ package worldOfZuul;
 public enum Commands
 {
     GO("sejl"), QUIT("quit"), HELP("hjælp"), UNKNOWN("?"),
-    DISPOSE("genbrug"), COLLECT("indsaml"), INFO("info"), COMPASS("kompas");
+    DISPOSE("genbrug"), COLLECT("indsaml"), INFO("info"),
+    COMPASS("kompas");
 
     
     private String commandName;

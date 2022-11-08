@@ -82,10 +82,12 @@ public class CommandLineClient {
     // Quit and end message for the game
     private void quitMessage(){
         if (game.getScore() >= 100000) {
-            System.out.println("Tillykke!! Du fik reddet verdenshavet, du fik det allerede løst i " + game.getGameDate());
+            System.out.println("Tillykke!! Du fik reddet verdenshavet, du fik det allerede løst i "
+                    + game.getGameDate());
         }
         else if (game.isIt2050()){
-            System.out.println("Desværre, kalenderen siger 2050 og du har tabt spillet. Du fik kun fjernet " + (game.getScore()+game.getShipCapacity())  + "/100000 tons plastik fra verdenshavene.");
+            System.out.println("Desværre, kalenderen siger 2050 og du har tabt spillet. Du fik kun fjernet "
+                    + (game.getScore()+game.getShipCapacity())  + "/100000 tons plastik fra verdenshavene.");
         }
         else {
             System.out.println("Hvis man lukker spillet inden 2050, så har man altså tabt, DU!");

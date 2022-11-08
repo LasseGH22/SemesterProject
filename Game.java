@@ -237,7 +237,8 @@ public class Game {
         Calendar oneMonth = Calendar.getInstance();                                       // Making calender object oneMonth
         oneMonth.setTime(gameDate);                                                       // Setting time of the object to current gameDate
         oneMonth.add(Calendar.MONTH,+1);                                           // Increments with one month
-        System.out.println("Det er nu " + months[oneMonth.get(Calendar.MONTH)] + " i år " + oneMonth.get(Calendar.YEAR)); // Prints current month
+        System.out.println("Det er nu " + months[oneMonth.get(Calendar.MONTH)] + " i år "
+                + oneMonth.get(Calendar.YEAR)); // Prints current month
         gameDate = oneMonth.getTime();                                                    // Sets the gameDate to the new date
     }
     public void setIsCollected(boolean isCollected) {
