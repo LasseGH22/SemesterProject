@@ -28,7 +28,7 @@ public class DeadFish implements Spawnable {
     @Override
     public void spawn() {
         Random rng = new Random();
-        int random = rng.nextInt(7)+1;
+        int random = rng.nextInt(1, 7);
 
         switch (random) {
             case 1:
