@@ -4,7 +4,15 @@ import java.util.Random;
 
 public class DeadFish implements Spawnable {
     private String deathReason;
-    private ArrayList<String> reasons = new ArrayList<>();      //Creates an arraylist for the causes of death
+    private ArrayList<String> reasons = new ArrayList<>(); {
+        reasons.add("Fisken er viklet ind i en fiskesnor og er druknet");
+        reasons.add("Fisken har fået plastik i spiserøret og er død af sult");
+        reasons.add("Fisken er fanget i et uloveligt fiskenet");
+        reasons.add("Fisken har viklet sig ind i en plasitkpose og er druknet");
+        reasons.add("Fisken har troet plastik var mad og er død af sult");
+        reasons.add("Fisken har noget om kroppen og er blevet for tung til at følge med sin stime");
+    }      //Creates an arraylist for the causes of death
+
 
     public DeadFish() {         //Constructor for the DeadFish class
         this.deathReason = "";
@@ -31,15 +39,8 @@ public class DeadFish implements Spawnable {
     public void spawn() {       //Handles the random picking of a deathreason for the DeadFish object
         Random rng = new Random();
         int random = rng.nextInt(1, 7);
-
-        reasons.add("Fisken er viklet ind i en fiskesnor og er druknet");
-        reasons.add("Fisken har fået plastik i spiserøret og er død af sult");
-        reasons.add("Fisken er fanget i et uloveligt fiskenet");
-        reasons.add("Fisken har viklet sig ind i en plasitkpose og er druknet");
-        reasons.add("Fisken har troet plastik var mad og er død af sult");
-        reasons.add("Fisken har noget om kroppen og er blevet for tung til at følge med sin stime");
-        setDeathReason(reasons.get(random));
-        reasons.clear();
+        setDeathReason(reasons.get(random - 1));
+        System.out.println("Random værdi: " + random);
     }
     @Override
     public String toString(){
