@@ -89,7 +89,7 @@ public class Room
 //        Hvis der er fisk og plast
         else if (plastic>0 && fish) {
             return "Du er " + description + ". Der er en død fisk. For at undersøge skriv >info<"
-                    +"\n Der er " +plastic+ " tons plastik i vandet. >indsaml< "+"\n" + getExitString();}
+                    +"\n" +"Der er " +plastic+ " tons plastik i vandet. >indsaml< "+"\n" + getExitString();}
 //        Hvis der ikke er fisk men der er plastik
         else if (plastic>0 && !fish) {
             return "Du er " + description + ". Der er " +plastic+ " tons plastik i vandet. >indsaml< "

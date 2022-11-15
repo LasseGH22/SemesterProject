@@ -113,14 +113,9 @@ public class CommandLineClient {
                 if(game.isIt2050()){  // Checks if is it 2050
                     quitMessage();    // If it is it will display a quit message
                     wantToQuit = true;// And set wantToQuit true and end game
-                }else
-                if (game.goRoom(command)) {     // Goes to the desired room
-                    game.newMove();             // Uses method newMove()
-                    game.setIsCollected(false);
-                    System.out.println(game.getRoomDescription()); // Prints description for current room
-                } else {
-                    System.out.println("Der er land i sigte, du kan ikke sejle den vej!"); // If not a valid exit for the room there is land in the way
                 }
+                else
+                    move(command);
                 break;
             case QUIT:
                 if (game.quit(command)) {
@@ -140,7 +135,8 @@ public class CommandLineClient {
                 }
                 else {
                     System.out.println("Du må ikke smide plastik i vandet. Sejl tilbage til havnen for at genbruge plasten!");
-                } break;
+                }
+                break;
             case COLLECT:
                 if (!game.getIsCollected()){ //Checks if plastic already has been collected, if not
                     game.collect(command);   // Plastic is collected
@@ -155,10 +151,7 @@ public class CommandLineClient {
                 if (!game.isHarbor()){ //If not in harbor, gives a hint on how to reach the harbor in the shortest manner.
                 System.out.println(game.getNavigation()); //Prints out the description
                 game.newMove();
-                if(game.isIt2050()){  // Checks if is it 2050
-                    quitMessage();    // If it is it will display a quit message
-                    wantToQuit = true;// And set wantToQuit true and end game
-                }
+                    wantToQuit = isQuit(wantToQuit);
                 }
                 else {
                     System.out.println("Du er allerede i havnen.");
@@ -171,5 +164,23 @@ public class CommandLineClient {
 
         }
 
+    private boolean isQuit(boolean wantToQuit) {
+        if(game.isIt2050()){  // Checks if is it 2050
+            quitMessage();    // If it is it will display a quit message
+            wantToQuit = true;// And set wantToQuit true and end game
+        }
+        return wantToQuit;
     }
+
+    private void move(Command command) {
+        if (game.goRoom(command)) {     // Goes to the desired room
+            game.newMove();             // Uses method newMove()
+            game.setIsCollected(false);
+            System.out.println(game.getRoomDescription()); // Prints description for current room
+        } else {
+            System.out.println("Der er land i sigte, du kan ikke sejle den vej!"); // If not a valid exit for the room there is land in the way
+        }
+    }
+
+}
 
