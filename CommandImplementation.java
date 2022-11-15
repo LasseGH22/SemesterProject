@@ -30,7 +30,6 @@ public class CommandImplementation implements Command
         this.commandValue = secondWord;
     }
 
-
     @Override
     public Commands getCommandName()
     {
@@ -42,7 +41,6 @@ public class CommandImplementation implements Command
     {
         return commandValue;
     }
-
 
     @Override
     public boolean isUnknown()

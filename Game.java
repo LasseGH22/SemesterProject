@@ -18,7 +18,7 @@ public class Game {
         commands = new CommandWordsImplementation();
     }
 
-    // Creates the rooms of the game, 19 of which are ocean rooms, 6 are islands and one Harbor.
+    /** Creates the rooms of the game, 19 of which are ocean rooms, 6 are islands and one Harbor */
     private void createRooms() {
         Room A1, A2, A3, A4, A5;
         Room B1, B2, B3, B4, B5;
@@ -134,8 +134,55 @@ public class Game {
         currentRoom = Harbor;
     }
 
-    public boolean goRoom(Command command) {
 
+                                        /* Accesor Methods */
+    public void getDeathReason(Command command) {           //Accesor method for deathreason of a DeadFish object
+        System.out.println(currentRoom.getDeadFishDeath());
+    }
+    public String getRoomDescription() {                    //Accesor method for the description of a room
+        return currentRoom.getLongDescription();
+    }
+    public String getNavigation() {                         //Accesor method for the navigation
+        return currentRoom.getWhereToSailNext();
+    }
+    public List<String> getCommandDescriptions() {          //Accesor method for commands
+        return commands.getCommandWords();
+    }
+    public Command getCommand(String word1, String word2) { //???
+        return new CommandImplementation(commands.getCommand(word1), word2);
+    }
+    public int getShipCapacity(){                           //Accesor method to return the current used capacity on the ship.
+        return skipperSkrald.getCapacity();
+    }
+    public boolean getIsCollected(){                        //Accesor method for the is collected boolean
+        return isCollected;
+    }
+    public long getScore(){                                 // Returns the score
+        Harbor currentHarbor = (Harbor)gameHarbor;
+        if(currentRoom.isHarbor()){
+            currentHarbor = (Harbor)currentRoom;
+        } return ((long)currentHarbor.getScore());
+    }
+
+
+                                        /* Mutator Methods */
+    public void setIsCollected(boolean isCollected) {       //Mutator method for IsCollected
+        this.isCollected = isCollected;
+    }
+
+
+
+                                    /* Methods and Functions */
+    public boolean isHarbor() {                             //???
+        return currentRoom.isHarbor();
+    }
+
+    public CommandWords getCommands() {                     //???
+        return commands;
+    }
+
+    /** Carries the logic for the GO command */
+    public boolean goRoom(Command command) {
         if (!command.hasCommandValue()) {
             //No direction on command.
             //Can't continue with GO command.
@@ -154,6 +201,7 @@ public class Game {
         }
     }
 
+    /** Carries the logic for the QUIT command */
     public boolean quit(Command command) {
         if (command.hasCommandValue()) {
             return false;
@@ -161,6 +209,8 @@ public class Game {
             return true;
         }
     }
+
+    /** Carries the logic for the DISPOSE command */
     public boolean dispose(Command command) {
         if (currentRoom.isHarbor()) {
             int score = skipperSkrald.disposePlastic();
@@ -172,41 +222,21 @@ public class Game {
         return false;
     }
 
-    public void getDeathReason(Command command) {
-        System.out.println(currentRoom.getDeadFishDeath());
-    }
-
+    /** Carries the logic for the COLLECT command */
     public void collect(Command command){
         skipperSkrald.collectPlastic(currentRoom.getCurrentPlastic());
         isCollected = true;
         //System.out.println(skipperSkrald.getInventory());
     }
 
-    public String getRoomDescription() {
-        return currentRoom.getLongDescription();
-    }
-    public String getNavigation() {
-        return currentRoom.getWhereToSailNext();
-    }
-
-    public CommandWords getCommands() {
-        return commands;
-    }
-
-    public List<String> getCommandDescriptions() {
-        return commands.getCommandWords();
-    }
-
-    public Command getCommand(String word1, String word2) {
-        return new CommandImplementation(commands.getCommand(word1), word2);
-    }
-
-
-    public boolean isIt2050() { //Function to check if the gameDate is currently 2050 or the current move will make it.
+    /** Function to check if the gameDate is currently 2050 or the current move will make it so */
+    public boolean isIt2050() {
         if(gameDate.compareTo(new Date(149,11,29)) >= 0) {
             return true;
         } else return false;
     }
+
+    /** Calculates and increments the date of the game */
     public String getGameDate(){
         String[] months = {"januar", "februar", "marts", "april", "maj", "juni", "juli",  // String array of all the months
                 "august", "september", "oktober", "november", "december"};
@@ -216,22 +246,9 @@ public class Game {
         String message = months[oneMonth.get(Calendar.MONTH)] + " " + oneMonth.get(Calendar.YEAR); // Prints current month
         return message;
     }
-    public int getShipCapacity(){           // Method to return the current used capacity on the ship.
-        return skipperSkrald.getCapacity();
 
-    }
-
-    public boolean getIsCollected(){        // Getter for the is collected boolean
-        return isCollected;
-    }
-
-    public long getScore(){                 // Returns the score
-        Harbor currentHarbor = (Harbor)gameHarbor;
-        if(currentRoom.isHarbor()){
-          currentHarbor = (Harbor)currentRoom;
-        } return ((long)currentHarbor.getScore());
-    }
-    public void newMove() { // Method for next move used when a player moves on the ocean.
+    /** Method for next move used when a player moves on the ocean */
+    public void newMove() {
         String[] months = {"januar", "februar", "marts", "april", "maj", "juni", "juli",  // String array of all the months
                             "august", "september", "oktober", "november", "december"};
         Calendar oneMonth = Calendar.getInstance();                                       // Making calender object oneMonth
@@ -240,11 +257,5 @@ public class Game {
         System.out.println("Det er nu " + months[oneMonth.get(Calendar.MONTH)] + " i år "
                 + oneMonth.get(Calendar.YEAR)); // Prints current month
         gameDate = oneMonth.getTime();                                                    // Sets the gameDate to the new date
-    }
-    public void setIsCollected(boolean isCollected) {
-        this.isCollected = isCollected;
-    }
-    public boolean isHarbor() {
-        return currentRoom.isHarbor();
     }
 }

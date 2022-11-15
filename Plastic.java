@@ -5,21 +5,22 @@ public class Plastic implements Spawnable{
 
     private int amount;
 
+                        /* Constructor, Accesor and Mutator Methods */
     //Constructor for Plastic objects
     public Plastic (){
         this.amount = 0;
     }
-
     //Mutator method for Plastic object
     public void setAmount(int amount) {
         this.amount = amount;
     }
-
     //Accesor method for Plastic object
     public int getAmount() {
         return amount;
     }
 
+
+                                /* Methods and Functions */
     /** Calculates the spawnChance of a Plastic object in a room */
     @Override
     public boolean spawnChance(){
@@ -40,6 +41,5 @@ public class Plastic implements Spawnable{
 
         setAmount(amount);
     }
-
 }
 

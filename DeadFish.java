@@ -14,16 +14,18 @@ public class DeadFish implements Spawnable {
     }
 
 
-    public DeadFish() {         //Constructor for the DeadFish class
+    public DeadFish() {                     //Constructor for the DeadFish class
         this.deathReason = "";
     }
     public String getDeathReason() {        //Accesor method for deathReason
         return deathReason;
     }
-
     public void setDeathReason(String deathReason) {
         this.deathReason = deathReason;     //Mutator method for deathReason
     }
+
+
+                                            /* Methods and Funtions */
     /** Calculates the spawnChance of a DeadFish object in a room */
     @Override
     public boolean spawnChance(){       //Calculates the spawnchance of a DeadFish object in a room

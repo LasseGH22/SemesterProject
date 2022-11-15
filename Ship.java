@@ -9,7 +9,8 @@ public class Ship {
     private int capacityMax;
     private int capacity;
 
-    //Constructor
+
+                        /* Constructor, Accesor and Mutator Methods */
     public Ship() {
         //Creates a list
         this.inventory = new ArrayList<Spawnable>();
@@ -18,14 +19,14 @@ public class Ship {
         //Sets the current capacity of the ship.
         this.capacity = 0;
     }
-
-    public ArrayList<Spawnable> getInventory() {
-        return inventory;
-    }
-
-    //Accesor method for the current capacity of the ship
     public int getCapacity(){
         return this.capacity;
+    }
+
+
+                                /* Methods and Functions */
+    public ArrayList<Spawnable> getInventory() {
+        return inventory;
     }
 
     /** Method to reset the current capcity of the ship to 0 */
