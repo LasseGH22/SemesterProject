@@ -24,6 +24,7 @@ public class DeadFish implements Spawnable {
     public void setDeathReason(String deathReason) {
         this.deathReason = deathReason;     //Mutator method for deathReason
     }
+    /** Calculates the spawnChance of a DeadFish object in a room */
     @Override
     public boolean spawnChance(){       //Calculates the spawnchance of a DeadFish object in a room
         Random random = new Random();
